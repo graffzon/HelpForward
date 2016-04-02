@@ -1,0 +1,27 @@
+h1 Отклики на просьбы о помощи
+
+table
+  thead
+    tr
+      th Responder
+      th Help request
+      th Comment
+      th Viewed by requestor
+      th
+      th
+      th
+
+  tbody
+    - @help_responses.each do |help_response|
+      tr
+        td = help_response.responder
+        td = help_response.help_request
+        td = help_response.comment
+        td = help_response.viewed_by_requestor
+        td = link_to 'Show', help_response
+        td = link_to 'Edit', edit_help_response_path(help_response)
+        td = link_to 'Destroy', help_response, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Help response', new_help_response_path

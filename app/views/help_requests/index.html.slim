@@ -19,7 +19,7 @@ table
           td = link_to 'Редактировать', edit_help_request_path(help_request)
           td = link_to 'Удалить', help_request, data: {:confirm => 'Вы уверены?'}, :method => :delete
         - else
-          td
+          td = link_to 'Сделать доброе дело', new_help_response_path(help_request_id: help_request.id)
           td
 
 br

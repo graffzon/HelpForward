@@ -1,0 +1,9 @@
+= simple_form_for(@help_response) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :help_request_id, as: :hidden, input_html: { value: params[:help_request_id] }
+    = f.input :comment, label: 'Комментарий'
+
+  .form-actions
+    = f.button :submit, "Отправить отклик"
