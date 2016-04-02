@@ -4,18 +4,11 @@ class Api::HelpRequestsController < ApplicationController
 
   def index
     @help_requests = HelpRequest.not_mine(current_user)
-    render :text => @help_requests.to_json
+    render :json => @help_requests.to_json
   end
 
   def show
-  end
-
-  def new
-    @help_request = HelpRequest.new
-    @users = User.all
-  end
-
-  def edit
+    render :text => @help_request.to_json
   end
 
   def create
@@ -23,16 +16,10 @@ class Api::HelpRequestsController < ApplicationController
     @help_request.creator = current_user
     @help_request.status = 0
 
-    render :text => @help_request.to_json
-  end
-
-  def update
-    respond_to do |format|
-      if @help_request.update(help_request_params)
-        format.html { redirect_to @help_request, notice: 'Help request was successfully updated.' }
-      else
-        format.html { render :edit }
-      end
+    if @help_request.save
+      render :text => @help_request.to_json
+    else
+      render :json => { error: 'Не создано' }
     end
   end
 
@@ -45,7 +32,11 @@ class Api::HelpRequestsController < ApplicationController
 
   private
     def current_user
-      @current_user = User.find(params[:user_id])
+      @current_user = User.where(id: params[:user_id])
+      unless @current_user.present?
+        render :json => { error: 403 }
+      end
+      @current_user
     end
 
     def set_help_request
