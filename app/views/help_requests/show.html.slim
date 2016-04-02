@@ -1,0 +1,24 @@
+p#notice = notice
+
+p
+  strong Title:
+  = @help_request.title
+p
+  strong Category:
+  = @help_request.category
+p
+  strong Creator:
+  = @help_request.creator
+p
+  strong Deadline:
+  = @help_request.deadline
+p
+  strong Status:
+  = @help_request.status
+p
+  strong Assistant:
+  = @help_request.assistant
+
+= link_to 'Edit', edit_help_request_path(@help_request)
+'|
+= link_to 'Back', help_requests_path

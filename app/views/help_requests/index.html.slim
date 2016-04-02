@@ -1,0 +1,27 @@
+h1 Все запросы о помощи
+
+table
+  thead
+    tr
+      th Title
+      th Category
+      th
+      th
+      th
+
+  tbody
+    - @help_requests.each do |help_request|
+      tr
+        td = help_request.title
+        td = help_request.category
+        td = link_to 'Показать', help_request
+        - if help_request.creator == current_user
+          td = link_to 'Редактировать', edit_help_request_path(help_request)
+          td = link_to 'Удалить', help_request, data: {:confirm => 'Вы уверены?'}, :method => :delete
+        - else
+          td
+          td
+
+br
+
+= link_to 'Создать запрос о помощи', new_help_request_path

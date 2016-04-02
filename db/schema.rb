@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160402132003) do
+ActiveRecord::Schema.define(version: 20160402134545) do
+
+  create_table "help_requests", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "category"
+    t.integer  "creator_id"
+    t.datetime "deadline"
+    t.integer  "status"
+    t.integer  "assistant_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "help_requests", ["assistant_id"], name: "index_help_requests_on_assistant_id"
+  add_index "help_requests", ["creator_id"], name: "index_help_requests_on_creator_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
