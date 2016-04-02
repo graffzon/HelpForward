@@ -1,4 +1,4 @@
-= form_for @help_request do |f|
+= simple_form_for(@help_request, html: { class: 'form-horizontal' }) do |f|
   - if @help_request.errors.any?
     #error_explanation
       h2 = "#{pluralize(@help_request.errors.count, "error")} prohibited this help_request from being saved:"
@@ -6,22 +6,8 @@
         - @help_request.errors.full_messages.each do |message|
           li = message
 
-  .field
-    = f.label :title
-    = f.text_field :title
-  .field
-    = f.label :category
-    = f.number_field :category
-  .field
-    = f.label :creator
-    = f.text_field :creator
-  .field
-    = f.label :deadline
-    = f.datetime_select :deadline
-  .field
-    = f.label :status
-    = f.number_field :status
-  .field
-    = f.label :assistant
-    = f.text_field :assistant
-  .actions = f.submit
+  = f.input :title, label: 'Название'
+  = f.input :category, collection: 0..4, label: 'Категория'
+  = f.input :deadline, as: :date, label: 'Актуально до:'
+  = f.button :submit, "Создать"
+

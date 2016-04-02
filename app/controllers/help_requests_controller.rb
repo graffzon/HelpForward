@@ -11,6 +11,7 @@ class HelpRequestsController < ApplicationController
 
   def new
     @help_request = HelpRequest.new
+    @users = User.all
   end
 
   def edit
@@ -18,6 +19,8 @@ class HelpRequestsController < ApplicationController
 
   def create
     @help_request = HelpRequest.new(help_request_params)
+    @help_request.creator = current_user
+    @help_request.status = 0
 
     respond_to do |format|
       if @help_request.save
