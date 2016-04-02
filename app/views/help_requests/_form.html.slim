@@ -7,7 +7,7 @@
           li = message
 
   = f.input :title, label: 'Название'
-  = f.input :category, collection: 0..4, label: 'Категория'
+  = f.input :category, collection: @help_request.class.categories.keys, label: 'Категория'
   = f.input :deadline, as: :date, label: 'Актуально до:'
   = f.button :submit, "Создать"
 
