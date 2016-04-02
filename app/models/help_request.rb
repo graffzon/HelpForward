@@ -5,4 +5,9 @@ class HelpRequest < ActiveRecord::Base
   validates :title, presence: true
 
   enum category: ["Физическая помощь", "Материальная помощь"]
+
+
+  def self.not_mine(user)
+  	where.not(creator:  user)
+  end
 end
