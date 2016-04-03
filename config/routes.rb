@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :help_requests, except: [:new, :edit, :update]
 
     get '/users/sign_in' => 'session#create'
+    get '/stats' => 'stats#index'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

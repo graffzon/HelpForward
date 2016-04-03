@@ -2,7 +2,7 @@ class HelpResponsesController < ApplicationController
   before_action :set_help_response, only: [:show, :edit, :update, :destroy]
 
   def index
-    @help_responses = HelpResponse.all
+    @help_responses = current_user.received_help_responses
   end
 
   def show
