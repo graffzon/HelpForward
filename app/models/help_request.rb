@@ -5,7 +5,7 @@ class HelpRequest < ActiveRecord::Base
 
   validates :title, presence: true
 
-  enum category: ["Физическая помощь", "Материальная помощь"]
+  enum category: ["Физическая помощь", "Материальная помощь", "Иная помощь"]
   enum status: [:requested, :completed]
 
 
