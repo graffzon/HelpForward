@@ -18,6 +18,7 @@ gem "less-rails"
 gem "twitter-bootstrap-rails"
 gem "slim-rails"
 gem 'simple_form'
+gem "bootstrap-table-rails"
 
 gem 'devise'
 
